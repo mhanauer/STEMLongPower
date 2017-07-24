@@ -13,27 +13,71 @@ We begin by setting up the model, which is a standard multilevel model with g as
 As the reader can see the power is very low (.2) to detect a slope of -045 with three participants each receiving ten measurements.
 
 Ok looks like everything needs some pilot data, so will need to find a similar study and get data from them to construct your outcome variable and the relationships to the independent variable.
+
+Even though we are going to drop  
 ```{r}
 library(simr)
 
-data("simdata")
-head(simdata)
-y = rnorm(100) 
-eth = c(rep("AA", 10), rep("AI", 10), rep("H", 10), rep("W", 70))
-person = rep(1:10,10)
-time = rep(1:4, 25)
-length(time)
+# This will be some type of ordinal value with and sd whatever the research finds
+# Think about if we need to specify the correlation between the indepdent and dependent, because we are specificying the parameter estimates, which are the correlations.
+set.seed(123)
+y = rnorm(640) 
+# If we want to model 80 participants with four time points then we need to have each ethnicity and stem times 4 totaling 80*4 320 data points.
 
-dataTest = cbind(y,eth)
+# If you extend the model without the WHITE and NON variables it should extend the model for those groups that are included?
 
-length(eth)
+eth = c(rep("HIS", 4*20), rep("BL", 4*20), rep("AI", 4*10), rep("AA", 4*20), rep("WHITE", 4*40+200))
+eth = as.data.frame(eth)
+dim(eth)
+HIS = ifelse(eth == "HIS", 1, 0)
+BL = ifelse(eth == "BL", 1, 0)
+AI = ifelse(eth == "AI", 1,0)
+AA = ifelse(eth == "AA", 1, 0)
+WHITE = ifelse(eth == "WHITE", 1, 0)
 
-model = glmer(z~x + (1|g), family = "poisson", data = simdata)
+# These variables need to be different from eth, because there is perfect multilinarity.  Need to make sure that person stays in the same stem field for the most part.  If everything is divisable by four you should be fine
+stem = c(rep("PS", 2*20), rep("TECH", 5*20), rep("ENGIN", 6*20), rep("MATH", 10*20), rep("NON", 2*40+100))
+PS = ifelse(stem == "PS", 1, 0)
+TECH = ifelse(stem == "TECH", 1, 0)
+EGNIN = ifelse(stem == "EGNIN", 1, 0)
+MATH = ifelse(stem == "MATH", 1,0)
+NON = ifelse(stem == "NON", 1, 0)
+dim(eth)
+stem = as.data.frame(stem)
+dim(stem)
+# We want to measure the quantiative questionnaire, because if there is enough power for the quantiative questionnaire with four time points 
+
+# Need to make sure that the person matches their ethnicity.  For person, need to make sure the total above is divisible by 16 and by 4 for time.   
+16*40
+640/4
+
+
+person = rep(1:4, each = 4, 40)
+person = as.data.frame(person)
+dim(person)
+
+time = rep(1:4, 160)
+time = as.data.frame(time)
+dim(time)
+dataTest = cbind(y, HIS, BL , AI , AA , WHITE , PS, TECH, EGNIN, MATH, NON, person, time)
+dim(dataTest)
+dataTest
+names(dataTest) = c("y", "HIS", "BL", "AI" , "AA" , "WHITE" , "PS", "TECH", "EGNIN", "MATH", "NON", "person", "time")
+head(dataTest)
+dataTest = as.data.frame(dataTest)
+#library(nlme)
+#dataTest = groupedData(y ~ HIS + BL + AI + AA + WHITE + PS + EGNIN + MATH + NON + person + time | person/time, data = dataTest)
+
+
+model = lmer(y~ 1 + (time | AI) + (time | HIS), data = dataTest)
+
 model
+
+dataTest
 
 fixef(model)["x"]
 fixef(model)["x"] = -.045
-
+ranef(model)
 set.seed(123)
 powerCurve(model , along = "g", nsim =  10)
 ```
