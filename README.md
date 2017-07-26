@@ -62,14 +62,9 @@ names(dataTest) = c("y", "HIS", "BL", "AI" , "AA" , "WHITE" , "PS", "TECH", "EGN
 dataTest = as.data.frame(dataTest)
 
 # Full model with all fixed and random effects
-model = lmer(y~ HIS + BL + AI + AA + PS + TECH + MATH + EGNIN + (time | HIS) + (time | BL) + (time | AI) + (time | AA) + (time | PS) + (time | TECH) + (time |MATH) + (time | EGNIN) , data = dataTest)
+model = lmer(y~ HIS + BL + AI + AA  + (HIS  |time) + (BL | time) + (AI | time) + (AA | time) , data = dataTest)
+fixef(model)
 
-
-# Model with no fixed effects and all random. 
-model = lmer(y~ 1 + (time | HIS) + (time | BL) + (time | AI) + (time | AA) + (time | PS) + (time | TECH) + (time |MATH) + (time | EGNIN) , data = dataTest)
-
-model
-ranef(model)
 
 VarCorr(model)["AI"] = .5
 model
@@ -128,14 +123,8 @@ names(dataTest) = c("y", "HIS", "BL", "AI" , "AA" , "WHITE" , "PS", "TECH", "EGN
 dataTest = as.data.frame(dataTest)
 
 # Full model with all fixed and random effects
-model = lmer(y~ HIS + BL + AI + AA + PS + TECH + MATH + EGNIN + (time | HIS) + (time | BL) + (time | AI) + (time | AA) + (time | PS) + (time | TECH) + (time |MATH) + (time | EGNIN) , data = dataTest)
-
-
-# Model with no fixed effects and all random. 
-model = lmer(y~ 1 + (time | HIS) + (time | BL) + (time | AI) + (time | AA) + (time | PS) + (time | TECH) + (time |MATH) + (time | EGNIN) , data = dataTest)
-
-
-model
+model = lmer(y~ HIS + BL + AI + AA  + (HIS  |time) + (BL | time) + (AI | time) + (AA | time) , data = dataTest)
+fixef(model)
 ranef(model)
 
 ```
