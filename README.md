@@ -62,26 +62,38 @@ time = as.data.frame(time)
 dataTest = cbind(y, HIS, BL , AI , AA , WHITE, person, time)
 names(dataTest) = c("y", "HIS", "BL", "AI" , "AA" , "WHITE", "person", "time")
 dataTest = as.data.frame(dataTest)
-
-
 ```
 Here I am creating the correlation matrices.  I am assuming that we need to include correlations for time points as well as ethnicities.  Although, a correlation matrix isn't best the measurement tool for a Pearson's R correlation isn't the best representation of a correlation between a binary variable (ethnicity) and a countinous variable (intent to persist). 
 
 First step is generate correlations for each of the four ethnicitices.  Using a range of .2 to .4, but will need to get the some literature to back this up. 
 ```{r}
 set.seed(123)
-time1 = runif(8, min = .2, max = .4)
-time2 = runif(8, min = .2, max = .4)
-time3 = runif(8, min = .2, max = .4)
-time4 = runif(8, min = .2, max = .4)
-time5 = runif(8, min = .2, max = .4) 
-his = runif(8, min = .2, max = .4)
-black = runif(8, min = .2, max = .4)
-aa = runif(8, min = .2, max = .4)
-ai  = runif(8, min = .2, max = .4)
+time1 = runif(9, min = .2, max = .4)
+time2 = runif(9, min = .2, max = .4)
+time3 = runif(9, min = .2, max = .4)
+time4 = runif(9, min = .2, max = .4)
+time5 = runif(9, min = .2, max = .4) 
+his = runif(9, min = .2, max = .4)
+black = runif(9, min = .2, max = .4)
+aa = runif(9, min = .2, max = .4)
+ai  = runif(9, min = .2, max = .4)
 
+#This gets the data in the right format, now I just need to insert the one's.  Insert ones's the correct places.  
+dataCorr = rbind(time1, time2, time3, time4, time5, his, black, aa, ai)
+dataCorr = as.matrix(dataCorr)
+colnames(dataCorr) = c("time1", "time2", "time3", "time4", "time5", "his", "black", "aa", "ai")
+dataCorrTest = dataCorr
+dataCorrTest[1,1] = 1
+dataCorrTest[2,2] = 1
+dataCorrTest[3,3] = 1
+dataCorrTest[4,4] = 1
+dataCorrTest[5,5] = 1
+dataCorrTest[6,6] = 1
+dataCorrTest[7,7] = 1
+dataCorrTest[8,8] = 1
+dataCorrTest[9,9] = 1
 
-
+dataCorrTest
 ```
 
 
