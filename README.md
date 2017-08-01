@@ -6,9 +6,11 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-Here I am creating the correlation matrices.  I am assuming that we need to include correlations for time points as well as ethnicities.  Although, a correlation matrix isn't best the measurement tool for a Pearson's R correlation isn't the best representation of a correlation between a binary variable (ethnicity) and a countinous variable (intent to persist). 
+Here I am creating the correlation matrix.  I am assuming that we need to include correlations for all five time points as well as ethnicities, because four ethnicities (Hispanic, African American, American Indian, and Asian) will be included in the model.  However, maybe including the binary variables isn't a good idea, because a Pearson's correlation matrix is not a good description of a correlation between a binary and continuous variable.
 
-First step is generate correlations for each of the four ethnicitices.  Using a range of .2 to .4, but will need to get the some literature to back this up. 
+I am assuming that all correlation between all variables is somewhere between .2 and .4 (I think somebody told me to assume that), which I selected from a uniform distribution.  
+
+I tried to create the correlation matrix in R, but I had a really hard time, so I just downloaded it and manually created it in excel (see corrData.csv).
 ```{r}
 #Generate 8*8 runif and then insert them one by one and repeat them as necessary.
 set.seed(123)
@@ -16,9 +18,13 @@ corrData = runif(64/2, max = .4, min = .2)
 write.csv(corrData, "corrData.csv")
 corrData = as.matrix(read.csv("corrData.csv", header = FALSE))
 ```
-Now we have the correlation matrix and either need to use that directly or create a data from that.
+I have a hard time working with correlation matrices and the power analyses packages in R, so I am trying to create the dependent variable from the correlation matrix.
 
-I created a multivariate distribution based upon the correlation matrix that I created.  I assumed the means were zero for the sake of simplicity in this example, but may need to change them based upon research.  I then took the first five variables, because those are the variables for the first time points which I believe is what we want for the dependent variable.  
+I created a random multivariate distribution based upon the correlation matrix that I created.  I assumed the means were zero for the sake of simplicity in this example, but may need to change them based upon research.  I then took the first five variables, because those are the variables for the five time points which I believe is what we want for the outcome variable.  I placed the five variables representing the outcome variable into one long form variable.  
+
+Because I have had difficulty sorting in R, I sorted the data by id and time in excel then reuploaded the data (see y.csv).
+
+I think this essentially returns data are similar to z-scores, because the mean is zero and the data are assumed to be multivariate normally distributed.
 ```{r}
 require(MASS)
 corrData = as.matrix(corrData)
@@ -33,10 +39,7 @@ dataMulti = reshape(dataMulti, varying = list(c("time1", "time2", "time3", "time
 dim(dataMulti)
 
 ```
-This is just me creating an artificial data set to demonstrate how the model works.  It has a total of 70+74 = 148 participants with the following breakdowns for ethnicity:  20 Hispanic, 20 African American, 10 Native American, 20 Asian American, and 74 White.  Also, for this example, I am assuming only 4 time points, which is what we want for the quantitative portion.  If we can get enough power for four time points, then we will have enough power for 10 time points, which is what we have for the qualitative data. 
-
-Here I am creating the data set (need to make it for five times not four)
-
+Then I added the other four ethnicity variables.  The data set has a total of 70+74 = 144 participants with the following breakdowns for ethnicity:  20 Hispanic, 20 African American, 10 Native American, 20 Asian American, and 74 White. 
 ```{r}
 library(simr)
 library(lme4)
@@ -46,7 +49,6 @@ set.seed(123)
 y = read.csv("y.csv", header = TRUE)
 eth = c(rep("HIS", 5*20), rep("BL", 5*20), rep("AI", 5*10), rep("AA", 5*20), rep("WHITE", 74*5))
 eth = as.data.frame(eth)
-
 HIS = ifelse(eth == "HIS", 1, 0)
 BL = ifelse(eth == "BL", 1, 0)
 AI = ifelse(eth == "AI", 1,0)
@@ -57,25 +59,25 @@ dataTest = cbind(y, HIS, BL , AI , AA , WHITE)
 names(dataTest) = c("time", "y", "id", "HIS", "BL", "AI" , "AA" , "WHITE")
 dataTest = as.data.frame(dataTest)
 ```
-Here are some examples of what I think we want.  I believe our goal is to get estimates for each of the four ethnicities at each of the four time points.  So I put together a model that has each of the four ethnicities in the fixed effects, which gives us the average estimate of each ethnicity on the dependent variable over time, while the random estimates provide the effect each ethnicity has over each of the four time points.  
-
-For example, ranef(model) extracts the random effects.  For HIS (i.e. Hispanic), there is a random intercept (the column below HIS) and a random slope (the HIS column) for each time point.  Therefore, we can evaluate Hispanics levels of a dependent variable at each time point and if the trajectory (i.e. the slope) for hispanics is different for each time point relative to whites (white is the reference category that is left out). 
-
-All of these estimates are relative to white individuals, because they are left out of the model.  However, if we wanted to understand how different ethnicities vary with each other we can develop different models with different reference categories.  For example we could include white and drop black, then all the parameter estimates would be in reference to black students. With black as the reference category, the parameter estimate for Hispanics would be the difference in the dependent variable relative to blacks at different times points. 
-
-My understanding is that in this model, level one is the ethnicity and level two is time.  I don’t think modeling person within time makes sense for several reasons.  First, I do not believe we are interested in the estimates for individuals only for ethnic groups.  Second, modeling person people over time will make the model more complex likely increasing the number of observations that we need.  Third, when I tried running person within time, the model failed (wouldn’t run), so with this set up, it may not be possible to model person within time.
+This is my understanding of the model.  It makes sense that we want time to be random, because we do not want to assume that every time point starts at the same level (i.e. intercept).  It also makes sense, because people are nested in time points not time point nested in people.        
 ```{r}
 library(lme4)
-model = lmer(y~ AI + HIS + BL + AA + (1 | id), data = dataTest)
+model = lmer(y~ AI + HIS + BL + AA + (1 | time), data = dataTest)
 summary(model)
 ```
-
+Given that the dependent variable is essentially, a z-score, which is comparable to a Cohen's D, I am assuming a .4 effect size for each ethnicity.  We are a little short with the current assumptions of 144 people. 
 ```{r}
-fixef(model)["AA"] <- 0.6
-fixef(model)["HIS"] <-0.6
-fixef(model)["BL"] <- 0.6
-fixef(model)["AI"] <- 0.6
-fixef(model)["AI"] <- 0.6
+#fixef(model)["AA"] <- 0.4
+#fixef(model)["HIS"] <-0.4
+#fixef(model)["BL"] <- 0.4
+fixef(model)["AI"] <- 0.4
 
-powerSim(model, nsim = 10)
+powerSim(model, nsim = 50)
 ```
+Try to extend the model
+```{r}
+set.seed(123)
+model = extend()
+powerCurve(model, nsim =  10)
+```
+
