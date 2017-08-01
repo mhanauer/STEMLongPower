@@ -30,25 +30,25 @@ require(MASS)
 corrData = as.matrix(corrData)
 dim(corrData)
 set.seed(123)
-dataMulti <- mvrnorm(720/5, mu = c(rep(0,9)), Sigma = corrData, empirical = TRUE)
+dataMulti <- mvrnorm(650/5, mu = c(rep(0,9)), Sigma = corrData, empirical = TRUE)
 dataMulti = dataMulti[,1:5]; dataMulti
 colnames(dataMulti) = c("time1", "time2", "time3", "time4", "time5"); head(dataMulti)
 library(reshape)
 dataMulti = as.data.frame(dataMulti)
 dataMulti = reshape(dataMulti, varying = list(c("time1", "time2", "time3", "time4", "time5")), times = c(1,2,3,4,5), direction = "long")
 dim(dataMulti)
-
 ```
-Then I added the other four ethnicity variables.  The data set has a total of 70+74 = 144 participants with the following breakdowns for ethnicity:  20 Hispanic, 20 African American, 10 Native American, 20 Asian American, and 74 White. 
+Then I added the other four ethnicity variables.  The data set has a total of 70+60 = 130 participants with the following breakdowns for ethnicity:  20 Hispanic, 20 African American, 10 Native American, 20 Asian American, and 74 White. 
 ```{r}
 library(simr)
 library(lme4)
 set.seed(123)
-#y = dataMulti
-#write.csv(y, "y.csv")
+y = dataMulti
+write.csv(y, "y.csv")
 y = read.csv("y.csv", header = TRUE)
-eth = c(rep("HIS", 5*20), rep("BL", 5*20), rep("AI", 5*10), rep("AA", 5*20), rep("WHITE", 74*5))
+eth = c(rep("HIS", 5*20), rep("BL", 5*20), rep("AI", 5*10), rep("AA", 5*20), rep("WHITE", 60*5))
 eth = as.data.frame(eth)
+dim(eth)
 HIS = ifelse(eth == "HIS", 1, 0)
 BL = ifelse(eth == "BL", 1, 0)
 AI = ifelse(eth == "AI", 1,0)
@@ -59,25 +59,18 @@ dataTest = cbind(y, HIS, BL , AI , AA , WHITE)
 names(dataTest) = c("time", "y", "id", "HIS", "BL", "AI" , "AA" , "WHITE")
 dataTest = as.data.frame(dataTest)
 ```
-This is my understanding of the model.  It makes sense that we want time to be random, because we do not want to assume that every time point starts at the same level (i.e. intercept).  It also makes sense, because people are nested in time points not time point nested in people.        
+This is my understanding of the model.  It makes sense that we want time to be random, because we want to allow time to have its own intercept instead of assuming that each time point is the same.  It also makes sense, because people are nested in time points not time point nested in people.  So I think level one is people and then level two is time.
 ```{r}
 library(lme4)
 model = lmer(y~ AI + HIS + BL + AA + (1 | time), data = dataTest)
 summary(model)
 ```
-Given that the dependent variable is essentially, a z-score, which is comparable to a Cohen's D, I am assuming a .4 effect size for each ethnicity.  We are a little short with the current assumptions of 144 people. 
+Given that the dependent variable is essentially, a z-score, which is comparable to a Cohen's D, I am assuming a .37 effect size for AI (American Indian).  The power can only be tested for one independent variable at a time; however, since AI is the lowest number group, if we have enough power for them and are assuming similar effects sizes across ethnicities, then we should have enough power for other ethnicities.  We are a little short  (.76) with the current assumptions of 130 people. 
 ```{r}
 #fixef(model)["AA"] <- 0.4
 #fixef(model)["HIS"] <-0.4
 #fixef(model)["BL"] <- 0.4
-fixef(model)["AI"] <- 0.4
+fixef(model)["AI"] <- 0.37
 
-powerSim(model, nsim = 50)
+powerSim(model, nsim = 100)
 ```
-Try to extend the model
-```{r}
-set.seed(123)
-model = extend()
-powerCurve(model, nsim =  10)
-```
-
