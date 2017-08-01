@@ -6,41 +6,135 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-Here is an example using an artificial data set as pilot data to estimate power for a random intercepts model.  The z variable is a count dependent variable, while x is a time variable going from 1 to 10 (i.e. there are ten measurements per person), and g is the group factor splitting the data into three groups a, b, and c, which for this example we will assume are different people.  In this simulation study, we want to estimate the sample size required for detecting an effect for time (i.e. the x variable) of -.045.  That is, we want to know the number of participants (i.e. the number of groups in variable g) to estimate an average change in the dependent variable, z, over time to have a power of .8 that would be able to detect a slope of -.045 (i.e. 80% chance of not making a type two error).  
+Here is the example
+```{r}
+#https://stackoverflow.com/questions/17047033/r-constructing-correlated-variables/17049940#17049940
 
-We begin by setting up the model, which is a standard multilevel model with g as the hieratical variable with three levels a, b, c (i.e. three different people) getting their own intercepts (i.e. random intercepts).  Then we change x's slope to -.045 and run the powerCurve model to estimate the number of people needed to achieve a desired level of power (usually .8).  The powerCurve function usually runs 1,000 simulations, which in real data analysis the user should use; however, because 1000 simulations can take a long time, I have set the number of simulations (nsim) to 10.  Additionally, because in this example, we are interested in understanding the number of participants (i.e. the g variable), I specify along "g".  The default is along the x variable, which, in this example, would provide the power for different amounts of measurements take across three participants needed to achieve a certain level of power.
+cor_Matrix <-  matrix(c (1.00, 0.90, 0.20 ,
+                     0.90, 1.00, 0.40 ,
+                     0.20, 0.40, 1.00), 
+                  nrow=3,ncol=3,byrow=TRUE)
 
-As the reader can see the power is very low (.2) to detect a slope of -045 with three participants each receiving ten measurements.
+library(psych) 
 
-Ok looks like everything needs some pilot data, so will need to find a similar study and get data from them to construct your outcome variable and the relationships to the independent variable.
+fit<-principal(cor_Matrix, nfactors=3, rotate="none")
+
+fit$loadings
+
+loadings<-matrix(fit$loadings[1:3, 1:3],nrow=3,ncol=3,byrow=F)
+loadings
+
+#create three rannor variable
+
+cases <- t(replicate(3, rnorm(3000)) ) #edited, changed to 3000 cases from 150 cases
+
+multivar <- loadings %*% cases
+T_multivar <- t(multivar)
+
+var<-as.data.frame(T_multivar)
+
+cor(var)
+
+```
+
+
+
+This is just me creating an artificial data set to demonstrate how the model works.  It has a total of 180 participants with the following breakdowns for ethnicity:  20 Hispanic, 20 African American, 10 Native American, 20 Asian American, and 110 White.  Also, for this example, I am assuming only 4 time points, which is what we want for the quantitative portion.  If we can get enough power for four time points, then we will have enough power for 10 time points, which is what we have for the qualitative data. 
+
+Here I am creating the data set (need to make it for five times not four)
 ```{r}
 library(simr)
-
-data("simdata")
-head(simdata)
-y = rnorm(100) 
-eth = c(rep("AA", 10), rep("AI", 10), rep("H", 10), rep("W", 70))
-person = rep(1:10,10)
-time = rep(1:4, 25)
-length(time)
-
-dataTest = cbind(y,eth)
-
-length(eth)
-
-model = glmer(z~x + (1|g), family = "poisson", data = simdata)
-model
-
-fixef(model)["x"]
-fixef(model)["x"] = -.045
-
+library(lme4)
 set.seed(123)
-powerCurve(model , along = "g", nsim =  10)
+y = rnorm(720)
+eth = c(rep("HIS", 4*20), rep("BL", 4*20), rep("AI", 4*10), rep("AA", 4*20), rep("WHITE", 4*40+200+80))
+eth = as.data.frame(eth)
+HIS = ifelse(eth == "HIS", 1, 0)
+BL = ifelse(eth == "BL", 1, 0)
+AI = ifelse(eth == "AI", 1,0)
+AA = ifelse(eth == "AA", 1, 0)
+WHITE = ifelse(eth == "WHITE", 1, 0)
+person = rep(1:180, each = 4)
+person = as.data.frame(person)
+dim(person)
+time = rep(1:4, 180)
+time = as.data.frame(time)
+dataTest = cbind(y, HIS, BL , AI , AA , WHITE, person, time)
+names(dataTest) = c("y", "HIS", "BL", "AI" , "AA" , "WHITE", "person", "time")
+dataTest = as.data.frame(dataTest)
 ```
-Therefore, we need to simulate increases in the sample to evaluate how many people are needed across ten measurements to achieve 80% power.  We can do this by using the extend function.  With the extend function, we set the simulation to simulate the model with participants 15 participants (i.e. 150 data points), because we specified the extension along the participant variable g with n = 15.  Then we run the powerCurve function along g again.  The results show that with ten measurements per person, we would need at least 10 people to have 80% power in our model.  
+Here I am creating the correlation matrices.  I am assuming that we need to include correlations for time points as well as ethnicities.  Although, a correlation matrix isn't best the measurement tool for a Pearson's R correlation isn't the best representation of a correlation between a binary variable (ethnicity) and a countinous variable (intent to persist). 
+
+First step is generate correlations for each of the four ethnicitices.  Using a range of .2 to .4, but will need to get the some literature to back this up. 
+
+
 ```{r}
-model13 = extend(model, along = "g", n = 15)
+
+
+#Generate 8*8 runif and then insert them one by one and repeat them as necessary.
 set.seed(123)
-powerCurve(model13, nsim = 10, along = "g")
+corrData = runif(64/2, max = .4, min = .2)
+corrMatrix = c(1,corrData[1:8], corrData[1],1, corrData[9:(9+6)]); corrMatrix
+length(corrMatrix)
+matrix(corrMatrix, nrow = 2, ncol = 9, byrow = TRUE)
+
+cor_Matrix <-  matrix(c (1.00, 0.90, 0.20 ,
+                     0.90, 1.00, 0.40 ,
+                     0.20, 0.40, 1.00), 
+                  nrow=3,ncol=3,byrow=TRUE)
 ```
+Now we have the correlation matrix so need to get the data using the PCA.
+```{r}
+library(psych) 
+
+fit<-principal(dataCorrTest, nfactors=9, rotate="none")
+
+fit$loadings
+
+loadings<-matrix(fit$loadings[1:3, 1:3],nrow=3,ncol=3,byrow=F)
+loadings
+
+#create three rannor variable
+
+cases <- t(replicate(3, rnorm(3000)) ) #edited, changed to 3000 cases from 150 cases
+
+multivar <- loadings %*% cases
+T_multivar <- t(multivar)
+
+var<-as.data.frame(T_multivar)
+
+cor(var)
+
+```
+
+
+
+Here are some examples of what I think we want.  I believe our goal is to get estimates for each of the four ethnicities at each of the four time points.  So I put together a model that has each of the four ethnicities in the fixed effects, which gives us the average estimate of each ethnicity on the dependent variable over time, while the random estimates provide the effect each ethnicity has over each of the four time points.  
+
+For example, ranef(model) extracts the random effects.  For HIS (i.e. Hispanic), there is a random intercept (the column below HIS) and a random slope (the HIS column) for each time point.  Therefore, we can evaluate Hispanics levels of a dependent variable at each time point and if the trajectory (i.e. the slope) for hispanics is different for each time point relative to whites (white is the reference category that is left out). 
+
+All of these estimates are relative to white individuals, because they are left out of the model.  However, if we wanted to understand how different ethnicities vary with each other we can develop different models with different reference categories.  For example we could include white and drop black, then all the parameter estimates would be in reference to black students. With black as the reference category, the parameter estimate for Hispanics would be the difference in the dependent variable relative to blacks at different times points. 
+
+My understanding is that in this model, level one is the ethnicity and level two is time.  I don’t think modeling person within time makes sense for several reasons.  First, I do not believe we are interested in the estimates for individuals only for ethnic groups.  Second, modeling person people over time will make the model more complex likely increasing the number of observations that we need.  Third, when I tried running person within time, the model failed (wouldn’t run), so with this set up, it may not be possible to model person within time.
+```{r}
+library(lme4)
+model = lmer(y~ AI + HIS + BL + AA + (1 | person), data = dataTest)
+summary(model)
+```
+Here is an example of the power analysis package that I know how to use.  There are two problems.  First, is that this package, and all others that I have tried, do not provide power for the random effects only the fixed effects, which I do not believe we are interested in, so that may not be very useful.  However, it may be the case that we do not need to estimate power for the random effects and may only need to ensure that we have enough power for the fixed effects.  
+
+Even if we only need to estimate the power for the fixed effects, it appears as though we can only get the power for one independent variable (i.e. one ethnicity at a time) at a time.  Therefore, we may need to run a separate power analysis for each ethnicity.  This should be fine, because power analysis that we run has the full model (i.e. all the ethnicities are included) it just estimates the power for one ethnicity at a time.  Therefore, each time we run the power analysis while estimating the power for a different ethnicity, the model is the same each time.
+
+If we do want to estimate the power for the fixed effects only, we will need to establish what reasonable parameter estimates are for each ethnicity.  Below I have assumed that each parameter estimate is .6; however, we will need to look at the literature and assess what a reasonable parameter estimate for each of the ethnicities for each of the dependent variables that we are interested in. 
+```{r}
+fixef(model)["AA"] <- 0.6
+fixef(model)["HIS"] <-0.6
+fixef(model)["BL"] <- 0.6
+fixef(model)["AI"] <- 0.6
+fixef(model)["AI"] <- 0.6
+
+powerSim(model, nsim = 10)
+```
+
+
 
