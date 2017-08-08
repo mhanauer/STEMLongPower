@@ -6,19 +6,78 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-Here I am creating the correlation matrix.  I am assuming that we need to include correlations for all five time points as well as ethnicities, because four ethnicities (Hispanic, African American, American Indian, and Asian) will be included in the model.  However, maybe including the binary variables isn't a good idea, because a Pearson's correlation matrix is not a good description of a correlation between a binary and continuous variable.
+Here I am creating the correlation matrix.  I am creating two sets of correlation matrices.  One representing the measures relationship with themeselves.  So there are 5 measures so there are 4 correlations with each measure so there are 20 correlations for the measures over time.  For these correlations I am assuming a relationship between .5 and .7 using a uniform distribution.  
 
-I am assuming that all correlation between all variables is somewhere between .2 and .4 (I think somebody told me to assume that), which I selected from a uniform distribution.  
+For the rest of the correlations, I just filled them with corrs ranging from -.2 to .4
 
-I tried to create the correlation matrix in R, but I had a really hard time, so I just downloaded it and manually created it in excel (see corrData.csv).
+
+Question: Should we create a correlation matrix that includes the correlations between the outcomes variables of interest if they are being modeled seperately?  For example, I think the model will only include one dependent variable at a time with only ethnicity and time as independent variables.  So do we need to include all variables at once?
+
+Question: Should we include the ethnicities correlations with the dependent variables as well?
+
+Question: Is there a more efficient to create a correlation matrix in R?  I created the correlations, but then placed into the matrix in excel by hand, because I could not figure out a more efficient way.
+
+Some of the eigenvalues were not positive so I used a smoothing package to make them positive.
+
+
 ```{r}
-#Generate 8*8 runif and then insert them one by one and repeat them as necessary.
 set.seed(123)
-corrData = runif(64/2, max = .4, min = .2)
+corrData = matrix(runif(20, max = .7, min = .5), ncol =5)
 write.csv(corrData, "corrData.csv")
+
+corrData = matrix(runif(280, max = .4, min = -.2), ncol =25)
+write.csv(corrData, "corrData.csv")
+
 setwd("~/Google Drive/Kerrie/LongStem/Data")
-corrData = as.matrix(read.csv("corrData.csv", header = FALSE))
+corrData = as.matrix(read.csv("STEMLongCorr.csv", header = FALSE))
+head(corrData)
+origEig <- eigen(corrData)
+origEig
+library(psych)
+corrData = cor.smooth(corrData)
+origEig <- eigen(corrData)
+origEig
 ```
+Let's just do an example with only time correlations for one variable.  So we will have about 5*5 -5 correlations.
+```{r}
+set.seed(123)
+corrData = matrix(runif(25, max = .7, min = .5), ncol =5)
+diag(corrData) = 1
+write.csv(corrData, "corrDataITP.csv")
+setwd("~/Google Drive/Kerrie/LongStem/Data")
+corrData = as.matrix(read.csv("corrDataITP.csv", header = TRUE))
+origEig <- eigen(corrData)
+origEig
+#library(psych)
+#corrData = cor.smooth(corrData)
+#origEig <- eigen(corrData)
+#origEig
+```
+
+
+
+Test generating ordinal values from a correlation matrix.  Remember that marginal values are the probabilities of selecting that value not condition on anything else so need to be a probability.
+
+Get the number of categories by using the cummaltive probability as the marginals with k-1 categories and the number of c's for the different number of variables.
+
+Have the marginals to be .2 for each category and .1 at the ends.
+
+Correlation is not exactly the same not sure if that is a big deal or not (all close and within the .5 .7 range we specified).  Probably not since these are estimates anyways and they are close.
+```{r}
+library(GenOrd)
+marginal = rep(list(c(.1,.3,.5, .7, .9)),5)
+corrcheck(marginal)
+Sigma = matrix(corrData, 5, 5)
+n = 650/5
+m = ordsample(n, marginal, Sigma)
+m
+cor(m) # compare it with Sigma
+# empirical marginal distributions
+cumsum(table(m[,1]))/n
+cumsum(table(m[,2]))/n # compare them with the two marginal distributions
+```
+
+
 I have a hard time working with correlation matrices and the power analyses packages in R, so I am trying to create the dependent variable from the correlation matrix.
 
 I created a random multivariate distribution based upon the correlation matrix that I created.  I assumed the means were zero for the sake of simplicity in this example, with a sigma according the correlation matrix.  I then took the first five variables, because those are the variables for the five time points which I believe is what we want for the outcome variable.  I placed the five variables representing the outcome variable into one long form variable.  
