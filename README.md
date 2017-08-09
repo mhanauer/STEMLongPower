@@ -139,14 +139,12 @@ nrow(getData(model2))
 dadtaModel2 =getData(model2)
 write.csv(dataModel2, "dataModel2.csv")
 
-#fm <- lmer(y ~ x + (1|g), data=simdata)
-#simdata
-#nrow(getData(fm))
-#test1 = getData(fm)
-#write.csv(test1, "test1.csv")
-#fmx1 <- extend(fm, along="x", n=20)
-#test2 = getData(fmx1)
-#write.csv(test2, "test2.csv")
+powerSim(model2, nsim = 100)
+
+pc1 = powerCurve(model2, along ="id", nsim = 10)
+pc1
+plot(pc1)
+
 
 
 ```
