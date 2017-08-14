@@ -10,15 +10,24 @@ I took the easy way out and reassigned correlations to the correct places.
 
 The multivariate normal distribution packages that I have seen in R do not take standard deviations they take a covariance matrix.  I think the covariance matrix is serving as the sd.   I do think a covariance ranging from .5 to .7 is probably ok, but I am not sure.  Also I assumed the variances were all the same with an sd of .7 (since it is the variance I took the sqrt(.7)).
 ```{r}
-set.seed(123)
-corrData = matrix(runif(25, min = .5, max = .7), ncol = 5); testCorr
-corrData[1,2] = corrData[2,1]; corrData[1,3] = corrData[3,1]; corrData[1,4] = corrData[4,1]; corrData[1,5] = corrData[1,5] 
-corrData[2,3] = corrData[3,2]; corrData[2,4] = corrData[4,2]; corrData[2,5] = corrData[5,2]
-corrData[3,4] = corrData[4,3]; corrData[3,5] = corrData[5,3]; corrData[4,5] = corrData[5,4]
-diag(corrData) = sqrt(.7)
-corrData
-n = 20000
 
+n = 20000
+set.seed(123)
+
+r0s = rnorm(n,0,.2)
+r1s = rnorm(n,0,.2)
+B00 = 1 + r0s
+B10 = .5 + r1s
+time = rep(1:5, 4000)
+eis = rnorm(n,0,.2)
+# Not sure what to do with the time part
+Yis = B00 + B10 + .5*(time) +eis
+Yis
+
+
+
+
+error = Yobs - 
 origEig <- eigen(corrData)
 origEig
 library(psych)
