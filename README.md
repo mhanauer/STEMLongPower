@@ -1,88 +1,98 @@
----
-title: "Power Analysis in R for Multilevel Models"
-output: html_document
----
+Show in New WindowClear OutputExpand/Collapse Output
+          [,1]      [,2]      [,3]      [,4]      [,5]
+[1,] 0.8366600 0.6576610 0.5817954 0.6766035 0.6779079
+[2,] 0.6576610 0.8366600 0.6784838 0.6102870 0.5913229
+[3,] 0.5817954 0.6784838 0.8366600 0.6145267 0.5205849
+[4,] 0.6766035 0.6102870 0.6145267 0.8366600 0.6909007
+[5,] 0.6880935 0.5913229 0.5205849 0.6909007 0.8366600
+$values
+[1] 3.3605311 0.3810294 0.1968399 0.1353238 0.1095760
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-I took the easy way out and reassigned correlations to the correct places.
+$vectors
+           [,1]       [,2]         [,3]        [,4]       [,5]
+[1,] -0.4574110 -0.2250287 -0.433347921  0.69225648  0.3038288
+[2,] -0.4488511  0.4032239 -0.540206048 -0.37933281 -0.5070576
+[3,] -0.4288251  0.6498819  0.389976473  0.07736302  0.4797034
+[4,] -0.4569527 -0.2475851  0.606837949  0.17043823 -0.5649702
+[5,] -0.4434086 -0.5505704 -0.007284169 -0.58468227  0.3182357
 
-The multivariate normal distribution packages that I have seen in R do not take standard deviations they take a covariance matrix.  I think the covariance matrix is serving as the sd.   I do think a covariance ranging from .5 to .7 is probably ok, but I am not sure.  Also I assumed the variances were all the same with an sd of .7 (since it is the variance I took the sqrt(.7)).
-```{r}
-set.seed(123)
-corrData = matrix(runif(25, min = .5, max = .7), ncol = 5)
-corrData[1,2] = corrData[2,1]; corrData[1,3] = corrData[3,1]; corrData[1,4] = corrData[4,1]; corrData[1,5] = corrData[1,5] 
-corrData[2,3] = corrData[3,2]; corrData[2,4] = corrData[4,2]; corrData[2,5] = corrData[5,2]
-corrData[3,4] = corrData[4,3]; corrData[3,5] = corrData[5,3]; corrData[4,5] = corrData[5,4]
-diag(corrData) = sqrt(.7)
-corrData
-n = 2000
+[1] 1000    4
+R Console
+ 
+ 
+TIME
+<dbl>
+ITP
+<dbl>
+ID
+<int>
+WHITE
+<dbl>
+1.1	1	4.586286	1	1
+2.1	1	3.609644	2	1
+3.1	1	2.082326	3	1
+4.1	1	3.216616	4	1
+5.1	1	3.679696	5	1
+6.1	1	1.625839	6	1
+6 rows
+data.frame
+6 x 4
+ 
+ 
+TIME
+<dbl>
+ITP
+<dbl>
+ID
+<int>
+WHITE
+<dbl>
+1.1	1	4.586286	1	1
+2.1	1	3.609644	2	1
+3.1	1	2.082326	3	1
+4.1	1	3.216616	4	1
+5.1	1	3.679696	5	1
+6.1	1	1.625839	6	1
+6 rows
+Show in New WindowClear OutputExpand/Collapse Output
+Linear mixed model fit by REML ['lmerMod']
+Formula: ITP ~ TIME + (TIME | ID)
+   Data: dataTest
 
-origEig <- eigen(corrData)
-origEig
-library(psych)
-#corrData = cor.smooth(corrData)
-#origEig <- eigen(corrData)
-#origEig
+REML criterion at convergence: 1789.1
 
-library(MASS)
-set.seed(123)
-ITP <- mvrnorm(n, mu = c(rep(3.5,5)), Sigma = corrData)
-TIME = rep(1:5, 200)
-colnames(ITP) = c("time1", "time2", "time3", "time4", "time5")
-ITP  = as.data.frame(ITP)
-ITP = apply(ITP, 2, function(x){ifelse(x >= 7,7,ifelse(x <= 1, 1, x))})
-ITP = as.data.frame(ITP)
-library(reshape)
-dataSTEM = reshape(ITP, varying = list(c("time1", "time2", "time3", "time4", "time5")), times = c(1,2,3,4,5), direction = "long")
-colnames(dataSTEM) = c("TIME", "ITP", "ID")
-WHITE = c(rep(1,.7*200), rep(0, .3*200))
-dataTest = cbind(dataSTEM, WHITE)
-dataTest = as.data.frame(dataTest)
-head(dataTest)
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.5192 -0.6127 -0.0258  0.6064  2.9142 
 
-```
-Group Level predictors for lme: http://www.rensenieuwenhuis.nl/r-sessions-16-multilevel-model-specification-lme4/
+Random effects:
+ Groups   Name        Variance  Std.Dev. Corr 
+ ID       (Intercept) 5.862e-01 0.765622      
+          TIME        6.729e-05 0.008203 -1.00
+ Residual             2.033e-01 0.450880      
+Number of obs: 1000, groups:  ID, 200
 
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept) 3.501103   0.063632   55.02
+TIME        0.002476   0.010099    0.25
 
-It seems like the data generating process is recovering the intecept which I set at 3.5  
-```{r}
-library(lme4)
-ITP = rnorm(100); length(y)
-WHITE = c(rep(1, 50), rep(0,50)); length(WHITE)
-TIME = rep(1:5, 20); length(TIME)
-ID = rep(1:5, each = 20); length(ID)
-dataTest2 = as.data.frame(cbind(y,WHITE, TIME, ID))
-model = lmer(ITP ~ WHITE + TIME + (1| ID), data = dataTest2)
-summary(model)
-```
-With the simr package, I can set the parameter estimates.  
-```{r}
-library(simr)
-fixef(model)["TIME"]
-fixef(model)["TIME"] <- 0.6
+Correlation of Fixed Effects:
+     (Intr)
+TIME -0.523
+Modify Chunk OptionsRun All Chunks AboveRun Current Chunk
+Show in New WindowClear OutputExpand/Collapse Output
+Power for predictor 'TIME', (95% confidence interval):
+      100.0% (69.15, 100.0)
 
-powerSim(model, nsim = 10)
+Test: Kenward Roger (package pbkrtest)
+      Effect size for TIME is 0.40
 
-dataModel1 = getData(model)
-write.csv(dataModel1, "dataModel1.csv")
-# Added 10 white people every 10 n's is 50 data points.
-model2 = extend(model, along = "id", n = 140)
+Based on 10 simulations, (0 warnings, 0 errors)
+alpha = 0.05, nrow = 1000
 
-
-fixef(model2)["TIME"] <- 0.6
-powerSim(model2, nsim = 100)
-```
-Testing
-```{r}
-library(simr)
-head(simdata)
-
-head(dataTest)
-model1 <- glmer(z ~ x + (1|g), family="poisson", data=simdata)
-fixef(model1)["x"] <- -0.05
-powerSim(model1, nsim = 10 )
-
-```
-
+Time elapsed: 0 h 0 m 24 s
+Modify Chunk OptionsRun All Chunks AboveRun Current Chunk
+Show in New WindowClear OutputExpand/Collapse Output
+ Show Traceback
+Error in getDefaultXname(fit) : Couldn't automatically determine a default fixed effect for this model.
