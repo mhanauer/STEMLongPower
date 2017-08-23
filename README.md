@@ -30,7 +30,7 @@ library(lme4)
 ### Since we have only one equation in the mixed equation, we can only have one unknowns
 # Let's make the eis is the unknown
 #########################################################################################
-do_once <- function(){
+STEMLong <- function(){
 ### High Level Parameters
 n<-150				# Sample Size
 timePoints<-5		# Number of Time Points
@@ -138,18 +138,22 @@ head(dat)
 
 #Growth model
 m2<-lmer(itp ~ time * (black+hisp+asian) + (time | id), data=dat)
-m2
+t_value = coef(summary(m2))[,"t value"] 
+t_value
 }
 
-p_vals <- replicate(10, do_once())
+t_values <- replicate(10, STEMLong())
+t_valuesT = as.data.frame(t(t_values)); t_valuesT
+# I think I can use apply somehow
+t_valuesTimeEth = as.data.frame(cbind(t_valuesT$`time:black`, t_valuesT$`time:hisp`, t_valuesT$`time:asian`))
+colnames(t_valuesTimeEth)  = c("time_black", "time_hisp", "time_asian")
 
-summary(m2)
+# Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
+t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
+t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
+t_valuesPower
+t_valuesTimeEth[t_values <= 2]
+# Something like for t-values
+p_vals[p_vals < 0.05]
 
-
-library(simr)
-powerSim(m2, nsim = 100)
-
-#round(sort(dat$itp),2)
-cor(ITPis)
-head(ITPis)
 
