@@ -29,10 +29,10 @@ library(lme4)
 ##########################################################################################
 ### Since we have only one equation in the mixed equation, we can only have one unknowns
 # Let's make the eis is the unknown
-######150###################################################################################
+######250###################################################################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-150				# Sample Size
+  n<-250				# Sample Size
   timePoints<-5		# Number of Time Points
   
   
@@ -154,19 +154,19 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n150 = 150
+n250 = 250
 # Then divide by the total to get the percentage of model that had t-values above 2, which is the power.    
-Power150 = as.data.frame(t(t_valuesPower/repNum))
-PowerB150 = cbind(Power150$time_black, n150)
-colnames(PowerB150) = c("Power", "N")
+Power250 = as.data.frame(t(t_valuesPower/repNum))
+PowerB250 = cbind(Power250$time_black, n250)
+colnames(PowerB250) = c("Power", "N")
 
-PowerH150 = cbind(Power150$time_hisp, n150)
-colnames(PowerH150) = c("Power", "N")
+PowerH250 = cbind(Power250$time_hisp, n250)
+colnames(PowerH250) = c("Power", "N")
 
-##############160#####################
+##############260#####################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-160				# Sample Size
+  n<-260				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -288,19 +288,19 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n160 = 160
-Power160 = as.data.frame(t(t_valuesPower/repNum))
-PowerB160 = cbind(Power160$time_black, 160)
-colnames(PowerB160) = c("Power", "N")
+n260 = 260
+Power260 = as.data.frame(t(t_valuesPower/repNum))
+PowerB260 = cbind(Power260$time_black, 260)
+colnames(PowerB260) = c("Power", "N")
 
-PowerH160 = cbind(Power160$time_hisp, 160)
-colnames(PowerH160) = c("Power", "N")
+PowerH260 = cbind(Power260$time_hisp, 260)
+colnames(PowerH260) = c("Power", "N")
 
-#############170#######################################
+#############270#######################################
 
 STEMLong <- function(){
   ### High Level Parameters
-  n<-170				# Sample Size
+  n<-270				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -422,18 +422,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n170 = 170
-Power170 = as.data.frame(t(t_valuesPower/repNum))
-PowerB170 = cbind(Power170$time_black, n170)
-colnames(PowerB170) = c("Power", "N")
+n270 = 270
+Power270 = as.data.frame(t(t_valuesPower/repNum))
+PowerB270 = cbind(Power270$time_black, n270)
+colnames(PowerB270) = c("Power", "N")
 
-PowerH170 = cbind(Power170$time_hisp, n170)
-colnames(PowerH170) = c("Power", "N")
+PowerH270 = cbind(Power270$time_hisp, n270)
+colnames(PowerH270) = c("Power", "N")
 
-#########180###########################################
+#########280###########################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-180				# Sample Size
+  n<-280				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -555,18 +555,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n180 = 180
-Power180 = as.data.frame(t(t_valuesPower/repNum))
-PowerB180 = cbind(Power180$time_black, n180)
-colnames(PowerB180) = c("Power", "N")
+n280 = 280
+Power280 = as.data.frame(t(t_valuesPower/repNum))
+PowerB280 = cbind(Power280$time_black, n280)
+colnames(PowerB280) = c("Power", "N")
 
-PowerH180 = cbind(Power180$time_hisp, n180)
-colnames(PowerH180) = c("Power", "N")
+PowerH280 = cbind(Power280$time_hisp, n280)
+colnames(PowerH280) = c("Power", "N")
 
 ####################################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-190				# Sample Size
+  n<-290				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -689,18 +689,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
 
-n190 = 190
-Power190 = as.data.frame(t(t_valuesPower/repNum))
-PowerB190 = cbind(Power190$time_black, n190)
-colnames(PowerB190) = c("Power", "N")
+n290 = 290
+Power290 = as.data.frame(t(t_valuesPower/repNum))
+PowerB290 = cbind(Power290$time_black, n290)
+colnames(PowerB290) = c("Power", "N")
 
-PowerH190 = cbind(Power190$time_hisp, n190)
-colnames(PowerH190) = c("Power", "N")
+PowerH290 = cbind(Power290$time_hisp, n290)
+colnames(PowerH290) = c("Power", "N")
 
-##########200##########################################
+##########300##########################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-200				# Sample Size
+  n<-300				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -823,18 +823,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
 
-n200 = 200
-Power200 = as.data.frame(t(t_valuesPower/repNum))
-PowerB200 = cbind(Power200$time_black, n200)
-colnames(PowerB200) = c("Power", "N")
+n300 = 300
+Power300 = as.data.frame(t(t_valuesPower/repNum))
+PowerB300 = cbind(Power300$time_black, n300)
+colnames(PowerB300) = c("Power", "N")
 
-PowerH200 = cbind(Power200$time_hisp, n200)
-colnames(PowerH200) = c("Power", "N")
+PowerH300 = cbind(Power300$time_hisp, n300)
+colnames(PowerH300) = c("Power", "N")
 
 #######Power Table#############################################
 # Just rbind everything and plot it 
-PowerTableH_22 = rbind(PowerH150, PowerH160, PowerH170, PowerH180, PowerH190, PowerH200)
-PowerTableB_22 = rbind(PowerB150, PowerB160, PowerB170, PowerB180, PowerB190, PowerB200)
+PowerTableH_22 = rbind(PowerH250, PowerH260, PowerH270, PowerH280, PowerH290, PowerH300)
+PowerTableB_22 = rbind(PowerB250, PowerB260, PowerB270, PowerB280, PowerB290, PowerB300)
 PowerTableH_22
 PowerTableB_22
 
@@ -869,10 +869,10 @@ library(lme4)
 ##########################################################################################
 ### Since we have only one equation in the mixed equation, we can only have one unknowns
 # Let's make the eis is the unknown
-######150###################################################################################
+######250###################################################################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-150				# Sample Size
+  n<-250				# Sample Size
   timePoints<-5		# Number of Time Points
   
   
@@ -994,19 +994,19 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n150 = 150
+n250 = 250
 # Then divide by the total to get the percentage of model that had t-values above 2, which is the power.    
-Power150 = as.data.frame(t(t_valuesPower/repNum))
-PowerB150 = cbind(Power150$time_black, n150)
-colnames(PowerB150) = c("Power", "N")
+Power250 = as.data.frame(t(t_valuesPower/repNum))
+PowerB250 = cbind(Power250$time_black, n250)
+colnames(PowerB250) = c("Power", "N")
 
-PowerH150 = cbind(Power150$time_hisp, n150)
-colnames(PowerH150) = c("Power", "N")
+PowerH250 = cbind(Power250$time_hisp, n250)
+colnames(PowerH250) = c("Power", "N")
 
-##############160#####################
+##############260#####################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-160				# Sample Size
+  n<-260				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -1128,19 +1128,19 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n160 = 160
-Power160 = as.data.frame(t(t_valuesPower/repNum))
-PowerB160 = cbind(Power160$time_black, 160)
-colnames(PowerB160) = c("Power", "N")
+n260 = 260
+Power260 = as.data.frame(t(t_valuesPower/repNum))
+PowerB260 = cbind(Power260$time_black, 260)
+colnames(PowerB260) = c("Power", "N")
 
-PowerH160 = cbind(Power160$time_hisp, 160)
-colnames(PowerH160) = c("Power", "N")
+PowerH260 = cbind(Power260$time_hisp, 260)
+colnames(PowerH260) = c("Power", "N")
 
-#############170#######################################
+#############270#######################################
 
 STEMLong <- function(){
   ### High Level Parameters
-  n<-170				# Sample Size
+  n<-270				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -1262,18 +1262,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n170 = 170
-Power170 = as.data.frame(t(t_valuesPower/repNum))
-PowerB170 = cbind(Power170$time_black, n170)
-colnames(PowerB170) = c("Power", "N")
+n270 = 270
+Power270 = as.data.frame(t(t_valuesPower/repNum))
+PowerB270 = cbind(Power270$time_black, n270)
+colnames(PowerB270) = c("Power", "N")
 
-PowerH170 = cbind(Power170$time_hisp, n170)
-colnames(PowerH170) = c("Power", "N")
+PowerH270 = cbind(Power270$time_hisp, n270)
+colnames(PowerH270) = c("Power", "N")
 
-#########180###########################################
+#########280###########################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-180				# Sample Size
+  n<-280				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -1395,18 +1395,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n180 = 180
-Power180 = as.data.frame(t(t_valuesPower/repNum))
-PowerB180 = cbind(Power180$time_black, n180)
-colnames(PowerB180) = c("Power", "N")
+n280 = 280
+Power280 = as.data.frame(t(t_valuesPower/repNum))
+PowerB280 = cbind(Power280$time_black, n280)
+colnames(PowerB280) = c("Power", "N")
 
-PowerH180 = cbind(Power180$time_hisp, n180)
-colnames(PowerH180) = c("Power", "N")
+PowerH280 = cbind(Power280$time_hisp, n280)
+colnames(PowerH280) = c("Power", "N")
 
 ####################################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-190				# Sample Size
+  n<-290				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -1529,18 +1529,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
 
-n190 = 190
-Power190 = as.data.frame(t(t_valuesPower/repNum))
-PowerB190 = cbind(Power190$time_black, n190)
-colnames(PowerB190) = c("Power", "N")
+n290 = 290
+Power290 = as.data.frame(t(t_valuesPower/repNum))
+PowerB290 = cbind(Power290$time_black, n290)
+colnames(PowerB290) = c("Power", "N")
 
-PowerH190 = cbind(Power190$time_hisp, n190)
-colnames(PowerH190) = c("Power", "N")
+PowerH290 = cbind(Power290$time_hisp, n290)
+colnames(PowerH290) = c("Power", "N")
 
-##########200##########################################
+##########300##########################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-200				# Sample Size
+  n<-300				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -1663,18 +1663,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
 
-n200 = 200
-Power200 = as.data.frame(t(t_valuesPower/repNum))
-PowerB200 = cbind(Power200$time_black, n200)
-colnames(PowerB200) = c("Power", "N")
+n300 = 300
+Power300 = as.data.frame(t(t_valuesPower/repNum))
+PowerB300 = cbind(Power300$time_black, n300)
+colnames(PowerB300) = c("Power", "N")
 
-PowerH200 = cbind(Power200$time_hisp, n200)
-colnames(PowerH200) = c("Power", "N")
+PowerH300 = cbind(Power300$time_hisp, n300)
+colnames(PowerH300) = c("Power", "N")
 
 #######Power Table#############################################
 # Just rbind everything and plot it 
-PowerTableH_24 = rbind(PowerH150, PowerH160, PowerH170, PowerH180, PowerH190, PowerH200)
-PowerTableB_24 = rbind(PowerB150, PowerB160, PowerB170, PowerB180, PowerB190, PowerB200)
+PowerTableH_24 = rbind(PowerH250, PowerH260, PowerH270, PowerH280, PowerH290, PowerH300)
+PowerTableB_24 = rbind(PowerB250, PowerB260, PowerB270, PowerB280, PowerB290, PowerB300)
 PowerTableH_24
 PowerTableB_24
 
@@ -1709,10 +1709,10 @@ library(lme4)
 ##########################################################################################
 ### Since we have only one equation in the mixed equation, we can only have one unknowns
 # Let's make the eis is the unknown
-######150###################################################################################
+######250###################################################################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-150				# Sample Size
+  n<-250				# Sample Size
   timePoints<-5		# Number of Time Points
   
   
@@ -1834,19 +1834,19 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n150 = 150
+n250 = 250
 # Then divide by the total to get the percentage of model that had t-values above 2, which is the power.    
-Power150 = as.data.frame(t(t_valuesPower/repNum))
-PowerB150 = cbind(Power150$time_black, n150)
-colnames(PowerB150) = c("Power", "N")
+Power250 = as.data.frame(t(t_valuesPower/repNum))
+PowerB250 = cbind(Power250$time_black, n250)
+colnames(PowerB250) = c("Power", "N")
 
-PowerH150 = cbind(Power150$time_hisp, n150)
-colnames(PowerH150) = c("Power", "N")
+PowerH250 = cbind(Power250$time_hisp, n250)
+colnames(PowerH250) = c("Power", "N")
 
-##############160#####################
+##############260#####################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-160				# Sample Size
+  n<-260				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -1968,19 +1968,19 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n160 = 160
-Power160 = as.data.frame(t(t_valuesPower/repNum))
-PowerB160 = cbind(Power160$time_black, 160)
-colnames(PowerB160) = c("Power", "N")
+n260 = 260
+Power260 = as.data.frame(t(t_valuesPower/repNum))
+PowerB260 = cbind(Power260$time_black, 260)
+colnames(PowerB260) = c("Power", "N")
 
-PowerH160 = cbind(Power160$time_hisp, 160)
-colnames(PowerH160) = c("Power", "N")
+PowerH260 = cbind(Power260$time_hisp, 260)
+colnames(PowerH260) = c("Power", "N")
 
-#############170#######################################
+#############270#######################################
 
 STEMLong <- function(){
   ### High Level Parameters
-  n<-170				# Sample Size
+  n<-270				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -2102,18 +2102,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n170 = 170
-Power170 = as.data.frame(t(t_valuesPower/repNum))
-PowerB170 = cbind(Power170$time_black, n170)
-colnames(PowerB170) = c("Power", "N")
+n270 = 270
+Power270 = as.data.frame(t(t_valuesPower/repNum))
+PowerB270 = cbind(Power270$time_black, n270)
+colnames(PowerB270) = c("Power", "N")
 
-PowerH170 = cbind(Power170$time_hisp, n170)
-colnames(PowerH170) = c("Power", "N")
+PowerH270 = cbind(Power270$time_hisp, n270)
+colnames(PowerH270) = c("Power", "N")
 
-#########180###########################################
+#########280###########################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-180				# Sample Size
+  n<-280				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -2235,18 +2235,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n180 = 180
-Power180 = as.data.frame(t(t_valuesPower/repNum))
-PowerB180 = cbind(Power180$time_black, n180)
-colnames(PowerB180) = c("Power", "N")
+n280 = 280
+Power280 = as.data.frame(t(t_valuesPower/repNum))
+PowerB280 = cbind(Power280$time_black, n280)
+colnames(PowerB280) = c("Power", "N")
 
-PowerH180 = cbind(Power180$time_hisp, n180)
-colnames(PowerH180) = c("Power", "N")
+PowerH280 = cbind(Power280$time_hisp, n280)
+colnames(PowerH280) = c("Power", "N")
 
 ####################################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-190				# Sample Size
+  n<-290				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -2369,18 +2369,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
 
-n190 = 190
-Power190 = as.data.frame(t(t_valuesPower/repNum))
-PowerB190 = cbind(Power190$time_black, n190)
-colnames(PowerB190) = c("Power", "N")
+n290 = 290
+Power290 = as.data.frame(t(t_valuesPower/repNum))
+PowerB290 = cbind(Power290$time_black, n290)
+colnames(PowerB290) = c("Power", "N")
 
-PowerH190 = cbind(Power190$time_hisp, n190)
-colnames(PowerH190) = c("Power", "N")
+PowerH290 = cbind(Power290$time_hisp, n290)
+colnames(PowerH290) = c("Power", "N")
 
-##########200##########################################
+##########300##########################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-200				# Sample Size
+  n<-300				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -2503,18 +2503,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
 
-n200 = 200
-Power200 = as.data.frame(t(t_valuesPower/repNum))
-PowerB200 = cbind(Power200$time_black, n200)
-colnames(PowerB200) = c("Power", "N")
+n300 = 300
+Power300 = as.data.frame(t(t_valuesPower/repNum))
+PowerB300 = cbind(Power300$time_black, n300)
+colnames(PowerB300) = c("Power", "N")
 
-PowerH200 = cbind(Power200$time_hisp, n200)
-colnames(PowerH200) = c("Power", "N")
+PowerH300 = cbind(Power300$time_hisp, n300)
+colnames(PowerH300) = c("Power", "N")
 
 #######Power Table#############################################
 # Just rbind everything and plot it 
-PowerTableH_26 = rbind(PowerH150, PowerH160, PowerH170, PowerH180, PowerH190, PowerH200)
-PowerTableB_26 = rbind(PowerB150, PowerB160, PowerB170, PowerB180, PowerB190, PowerB200)
+PowerTableH_26 = rbind(PowerH250, PowerH260, PowerH270, PowerH280, PowerH290, PowerH300)
+PowerTableB_26 = rbind(PowerB250, PowerB260, PowerB270, PowerB280, PowerB290, PowerB300)
 PowerTableH_26
 PowerTableB_26
 
@@ -2549,10 +2549,10 @@ library(lme4)
 ##########################################################################################
 ### Since we have only one equation in the mixed equation, we can only have one unknowns
 # Let's make the eis is the unknown
-######150###################################################################################
+######250###################################################################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-150				# Sample Size
+  n<-250				# Sample Size
   timePoints<-5		# Number of Time Points
   
   
@@ -2674,19 +2674,19 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n150 = 150
+n250 = 250
 # Then divide by the total to get the percentage of model that had t-values above 2, which is the power.    
-Power150 = as.data.frame(t(t_valuesPower/repNum))
-PowerB150 = cbind(Power150$time_black, n150)
-colnames(PowerB150) = c("Power", "N")
+Power250 = as.data.frame(t(t_valuesPower/repNum))
+PowerB250 = cbind(Power250$time_black, n250)
+colnames(PowerB250) = c("Power", "N")
 
-PowerH150 = cbind(Power150$time_hisp, n150)
-colnames(PowerH150) = c("Power", "N")
+PowerH250 = cbind(Power250$time_hisp, n250)
+colnames(PowerH250) = c("Power", "N")
 
-##############160#####################
+##############260#####################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-160				# Sample Size
+  n<-260				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -2808,19 +2808,19 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n160 = 160
-Power160 = as.data.frame(t(t_valuesPower/repNum))
-PowerB160 = cbind(Power160$time_black, 160)
-colnames(PowerB160) = c("Power", "N")
+n260 = 260
+Power260 = as.data.frame(t(t_valuesPower/repNum))
+PowerB260 = cbind(Power260$time_black, 260)
+colnames(PowerB260) = c("Power", "N")
 
-PowerH160 = cbind(Power160$time_hisp, 160)
-colnames(PowerH160) = c("Power", "N")
+PowerH260 = cbind(Power260$time_hisp, 260)
+colnames(PowerH260) = c("Power", "N")
 
-#############170#######################################
+#############270#######################################
 
 STEMLong <- function(){
   ### High Level Parameters
-  n<-170				# Sample Size
+  n<-270				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -2942,18 +2942,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n170 = 170
-Power170 = as.data.frame(t(t_valuesPower/repNum))
-PowerB170 = cbind(Power170$time_black, n170)
-colnames(PowerB170) = c("Power", "N")
+n270 = 270
+Power270 = as.data.frame(t(t_valuesPower/repNum))
+PowerB270 = cbind(Power270$time_black, n270)
+colnames(PowerB270) = c("Power", "N")
 
-PowerH170 = cbind(Power170$time_hisp, n170)
-colnames(PowerH170) = c("Power", "N")
+PowerH270 = cbind(Power270$time_hisp, n270)
+colnames(PowerH270) = c("Power", "N")
 
-#########180###########################################
+#########280###########################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-180				# Sample Size
+  n<-280				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -3075,18 +3075,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n180 = 180
-Power180 = as.data.frame(t(t_valuesPower/repNum))
-PowerB180 = cbind(Power180$time_black, n180)
-colnames(PowerB180) = c("Power", "N")
+n280 = 280
+Power280 = as.data.frame(t(t_valuesPower/repNum))
+PowerB280 = cbind(Power280$time_black, n280)
+colnames(PowerB280) = c("Power", "N")
 
-PowerH180 = cbind(Power180$time_hisp, n180)
-colnames(PowerH180) = c("Power", "N")
+PowerH280 = cbind(Power280$time_hisp, n280)
+colnames(PowerH280) = c("Power", "N")
 
 ####################################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-190				# Sample Size
+  n<-290				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -3209,18 +3209,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
 
-n190 = 190
-Power190 = as.data.frame(t(t_valuesPower/repNum))
-PowerB190 = cbind(Power190$time_black, n190)
-colnames(PowerB190) = c("Power", "N")
+n290 = 290
+Power290 = as.data.frame(t(t_valuesPower/repNum))
+PowerB290 = cbind(Power290$time_black, n290)
+colnames(PowerB290) = c("Power", "N")
 
-PowerH190 = cbind(Power190$time_hisp, n190)
-colnames(PowerH190) = c("Power", "N")
+PowerH290 = cbind(Power290$time_hisp, n290)
+colnames(PowerH290) = c("Power", "N")
 
-##########200##########################################
+##########300##########################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-200				# Sample Size
+  n<-300				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -3343,18 +3343,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
 
-n200 = 200
-Power200 = as.data.frame(t(t_valuesPower/repNum))
-PowerB200 = cbind(Power200$time_black, n200)
-colnames(PowerB200) = c("Power", "N")
+n300 = 300
+Power300 = as.data.frame(t(t_valuesPower/repNum))
+PowerB300 = cbind(Power300$time_black, n300)
+colnames(PowerB300) = c("Power", "N")
 
-PowerH200 = cbind(Power200$time_hisp, n200)
-colnames(PowerH200) = c("Power", "N")
+PowerH300 = cbind(Power300$time_hisp, n300)
+colnames(PowerH300) = c("Power", "N")
 
 #######Power Table#############################################
 # Just rbind everything and plot it 
-PowerTableH_28 = rbind(PowerH150, PowerH160, PowerH170, PowerH180, PowerH190, PowerH200)
-PowerTableB_28 = rbind(PowerB150, PowerB160, PowerB170, PowerB180, PowerB190, PowerB200)
+PowerTableH_28 = rbind(PowerH250, PowerH260, PowerH270, PowerH280, PowerH290, PowerH300)
+PowerTableB_28 = rbind(PowerB250, PowerB260, PowerB270, PowerB280, PowerB290, PowerB300)
 PowerTableH_28
 PowerTableB_28
 
@@ -3389,10 +3389,10 @@ library(lme4)
 ##########################################################################################
 ### Since we have only one equation in the mixed equation, we can only have one unknowns
 # Let's make the eis is the unknown
-######150###################################################################################
+######250###################################################################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-150				# Sample Size
+  n<-250				# Sample Size
   timePoints<-5		# Number of Time Points
   
   
@@ -3514,19 +3514,19 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n150 = 150
+n250 = 250
 # Then divide by the total to get the percentage of model that had t-values above 2, which is the power.    
-Power150 = as.data.frame(t(t_valuesPower/repNum))
-PowerB150 = cbind(Power150$time_black, n150)
-colnames(PowerB150) = c("Power", "N")
+Power250 = as.data.frame(t(t_valuesPower/repNum))
+PowerB250 = cbind(Power250$time_black, n250)
+colnames(PowerB250) = c("Power", "N")
 
-PowerH150 = cbind(Power150$time_hisp, n150)
-colnames(PowerH150) = c("Power", "N")
+PowerH250 = cbind(Power250$time_hisp, n250)
+colnames(PowerH250) = c("Power", "N")
 
-##############160#####################
+##############260#####################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-160				# Sample Size
+  n<-260				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -3648,19 +3648,19 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n160 = 160
-Power160 = as.data.frame(t(t_valuesPower/repNum))
-PowerB160 = cbind(Power160$time_black, 160)
-colnames(PowerB160) = c("Power", "N")
+n260 = 260
+Power260 = as.data.frame(t(t_valuesPower/repNum))
+PowerB260 = cbind(Power260$time_black, 260)
+colnames(PowerB260) = c("Power", "N")
 
-PowerH160 = cbind(Power160$time_hisp, 160)
-colnames(PowerH160) = c("Power", "N")
+PowerH260 = cbind(Power260$time_hisp, 260)
+colnames(PowerH260) = c("Power", "N")
 
-#############170#######################################
+#############270#######################################
 
 STEMLong <- function(){
   ### High Level Parameters
-  n<-170				# Sample Size
+  n<-270				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -3782,18 +3782,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n170 = 170
-Power170 = as.data.frame(t(t_valuesPower/repNum))
-PowerB170 = cbind(Power170$time_black, n170)
-colnames(PowerB170) = c("Power", "N")
+n270 = 270
+Power270 = as.data.frame(t(t_valuesPower/repNum))
+PowerB270 = cbind(Power270$time_black, n270)
+colnames(PowerB270) = c("Power", "N")
 
-PowerH170 = cbind(Power170$time_hisp, n170)
-colnames(PowerH170) = c("Power", "N")
+PowerH270 = cbind(Power270$time_hisp, n270)
+colnames(PowerH270) = c("Power", "N")
 
-#########180###########################################
+#########280###########################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-180				# Sample Size
+  n<-280				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -3915,18 +3915,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 # Changing the t- values that are less than or equal -2, because we are expecting statistically significantly lower ITP scores.
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
-n180 = 180
-Power180 = as.data.frame(t(t_valuesPower/repNum))
-PowerB180 = cbind(Power180$time_black, n180)
-colnames(PowerB180) = c("Power", "N")
+n280 = 280
+Power280 = as.data.frame(t(t_valuesPower/repNum))
+PowerB280 = cbind(Power280$time_black, n280)
+colnames(PowerB280) = c("Power", "N")
 
-PowerH180 = cbind(Power180$time_hisp, n180)
-colnames(PowerH180) = c("Power", "N")
+PowerH280 = cbind(Power280$time_hisp, n280)
+colnames(PowerH280) = c("Power", "N")
 
 ####################################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-190				# Sample Size
+  n<-290				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -4049,18 +4049,18 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
 
-n190 = 190
-Power190 = as.data.frame(t(t_valuesPower/repNum))
-PowerB190 = cbind(Power190$time_black, n190)
-colnames(PowerB190) = c("Power", "N")
+n290 = 290
+Power290 = as.data.frame(t(t_valuesPower/repNum))
+PowerB290 = cbind(Power290$time_black, n290)
+colnames(PowerB290) = c("Power", "N")
 
-PowerH190 = cbind(Power190$time_hisp, n190)
-colnames(PowerH190) = c("Power", "N")
+PowerH290 = cbind(Power290$time_hisp, n290)
+colnames(PowerH290) = c("Power", "N")
 
-##########200##########################################
+##########300##########################################
 STEMLong <- function(){
   ### High Level Parameters
-  n<-200				# Sample Size
+  n<-300				# Sample Size
   timePoints<-5		# Number of Time Points
   
   # These are for -.2
@@ -4183,19 +4183,20 @@ colnames(t_valuesTimeEth)  = c("time_black", "time_hisp")
 t_valuesOnes = as.data.frame(apply(t_valuesTimeEth, 2, function(x){ifelse(x <= -2, 1, 0)}))
 t_valuesPower = as.data.frame(apply(t_valuesOnes, 2, sum))
 
-n200 = 200
-Power200 = as.data.frame(t(t_valuesPower/repNum))
-PowerB200 = cbind(Power200$time_black, n200)
-colnames(PowerB200) = c("Power", "N")
+n300 = 300
+Power300 = as.data.frame(t(t_valuesPower/repNum))
+PowerB300 = cbind(Power300$time_black, n300)
+colnames(PowerB300) = c("Power", "N")
 
-PowerH200 = cbind(Power200$time_hisp, n200)
-colnames(PowerH200) = c("Power", "N")
+PowerH300 = cbind(Power300$time_hisp, n300)
+colnames(PowerH300) = c("Power", "N")
 
 #######Power Table#############################################
 # Just rbind everything and plot it 
-PowerTableH_3 = rbind(PowerH150, PowerH160, PowerH170, PowerH180, PowerH190, PowerH200)
-PowerTableB_3 = rbind(PowerB150, PowerB160, PowerB170, PowerB180, PowerB190, PowerB200)
-
+PowerTableH_3 = rbind(PowerH250, PowerH260, PowerH270, PowerH280, PowerH290, PowerH300)
+PowerTableB_3 = rbind(PowerB250, PowerB260, PowerB270, PowerB280, PowerB290, PowerB300)
+PowerTableH_3
+PowerTableB_3
 
 
 
