@@ -43,7 +43,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.22 ; b12Val <- -.22  # Coefficients for the different ethnicities
+  b11Val <- -.32 ; b12Val <- -.32  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -177,7 +177,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.22 ; b12Val <- -.22  # Coefficients for the different ethnicities
+  b11Val <- -.32 ; b12Val <- -.32  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -311,7 +311,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.22 ; b12Val <- -.22  # Coefficients for the different ethnicities
+  b11Val <- -.32 ; b12Val <- -.32  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -444,7 +444,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.22 ; b12Val <- -.22  # Coefficients for the different ethnicities
+  b11Val <- -.32 ; b12Val <- -.32  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -577,7 +577,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.22 ; b12Val <- -.22  # Coefficients for the different ethnicities
+  b11Val <- -.32 ; b12Val <- -.32  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -711,7 +711,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.22 ; b12Val <- -.22  # Coefficients for the different ethnicities
+  b11Val <- -.32 ; b12Val <- -.32  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -883,7 +883,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.24 ; b12Val <- -.24  # Coefficients for the different ethnicities
+  b11Val <- -.34 ; b12Val <- -.34  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -1017,7 +1017,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.24 ; b12Val <- -.24  # Coefficients for the different ethnicities
+  b11Val <- -.34 ; b12Val <- -.34  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -1151,7 +1151,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.24 ; b12Val <- -.24  # Coefficients for the different ethnicities
+  b11Val <- -.34 ; b12Val <- -.34  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -1284,7 +1284,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.24 ; b12Val <- -.24  # Coefficients for the different ethnicities
+  b11Val <- -.34 ; b12Val <- -.34  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -1417,7 +1417,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.24 ; b12Val <- -.24  # Coefficients for the different ethnicities
+  b11Val <- -.34 ; b12Val <- -.34  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -1551,7 +1551,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.24 ; b12Val <- -.24  # Coefficients for the different ethnicities
+  b11Val <- -.34 ; b12Val <- -.34  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -1723,7 +1723,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.26 ; b12Val <- -.26  # Coefficients for the different ethnicities
+  b11Val <- -.36 ; b12Val <- -.36  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -1857,7 +1857,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.26 ; b12Val <- -.26  # Coefficients for the different ethnicities
+  b11Val <- -.36 ; b12Val <- -.36  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -1991,7 +1991,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.26 ; b12Val <- -.26  # Coefficients for the different ethnicities
+  b11Val <- -.36 ; b12Val <- -.36  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -2124,7 +2124,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.26 ; b12Val <- -.26  # Coefficients for the different ethnicities
+  b11Val <- -.36 ; b12Val <- -.36  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -2257,7 +2257,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.26 ; b12Val <- -.26  # Coefficients for the different ethnicities
+  b11Val <- -.36 ; b12Val <- -.36  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -2391,7 +2391,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.26 ; b12Val <- -.26  # Coefficients for the different ethnicities
+  b11Val <- -.36 ; b12Val <- -.36  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -2563,7 +2563,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.28 ; b12Val <- -.28  # Coefficients for the different ethnicities
+  b11Val <- -.38 ; b12Val <- -.38  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -2697,7 +2697,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.28 ; b12Val <- -.28  # Coefficients for the different ethnicities
+  b11Val <- -.38 ; b12Val <- -.38  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -2831,7 +2831,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.28 ; b12Val <- -.28  # Coefficients for the different ethnicities
+  b11Val <- -.38 ; b12Val <- -.38  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -2964,7 +2964,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.28 ; b12Val <- -.28  # Coefficients for the different ethnicities
+  b11Val <- -.38 ; b12Val <- -.38  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -3097,7 +3097,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.28 ; b12Val <- -.28  # Coefficients for the different ethnicities
+  b11Val <- -.38 ; b12Val <- -.38  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -3231,7 +3231,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.28 ; b12Val <- -.28  # Coefficients for the different ethnicities
+  b11Val <- -.38 ; b12Val <- -.38  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -3403,7 +3403,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.3 ; b12Val <- -.3  # Coefficients for the different ethnicities
+  b11Val <- -.4 ; b12Val <- -.4  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -3537,7 +3537,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.3 ; b12Val <- -.3  # Coefficients for the different ethnicities
+  b11Val <- -.4 ; b12Val <- -.4  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -3671,7 +3671,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.3 ; b12Val <- -.3  # Coefficients for the different ethnicities
+  b11Val <- -.4 ; b12Val <- -.4  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -3804,7 +3804,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.3 ; b12Val <- -.3  # Coefficients for the different ethnicities
+  b11Val <- -.4 ; b12Val <- -.4  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -3937,7 +3937,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.3 ; b12Val <- -.3  # Coefficients for the different ethnicities
+  b11Val <- -.4 ; b12Val <- -.4  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
@@ -4071,7 +4071,7 @@ STEMLong <- function(){
   # This should be low, because we are not expecting alot of change among the white owmen
   b10Val <- .05
   # These values result in scores of 4.5 for black and Hispanic women
-  b11Val <- -.3 ; b12Val <- -.3  # Coefficients for the different ethnicities
+  b11Val <- -.4 ; b12Val <- -.4  # Coefficients for the different ethnicities
   ETHsCategories<-c(1,2,3)
   ETHsLabel<-c("W","B","H")
   ETHsProb<- c(0.50,0.25,.25) # highest prob is whites
